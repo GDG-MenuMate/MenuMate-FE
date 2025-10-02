@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-white;
+  }
+}
+
+@font-face {
+  font-family: 'NanumGothic';
+  src: url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+}
+
+/* 전역 CSS (index.css 등) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
