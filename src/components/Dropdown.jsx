@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import chevronDown from "../assets/chevron-down.svg";
+import ChevronDown from "../assets/Chevron-down.svg";
 
 const Dropdown = ({ id, label, openMenu, setOpenMenu, children }) => {
   const isOpen = openMenu === id;
@@ -38,7 +38,7 @@ const Dropdown = ({ id, label, openMenu, setOpenMenu, children }) => {
           >
             {label}
             <img
-                src={chevronDown}
+                src={ChevronDown}
                 alt="chevron"
                 className={`absolute right-2 w-4 h-4 transition-transform ${
                     isOpen ? "rotate-180" : "rotate-0"

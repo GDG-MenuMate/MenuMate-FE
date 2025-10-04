@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Dropdown from "./Dropdown";
 import useMenuStore from "../store/useMenuStore";
