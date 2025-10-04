@@ -1,14 +1,18 @@
 import React from "react";
-import Button from "../components/Button.jsx";
-import Dropdown from "../components/Dropdown.jsx";
-import FilterMenu from "../components/FilterMenu.jsx";
-import SearchInput from "../components/SearchInput.jsx";
+import { useNavigate } from "react-router-dom";
 import SearchStart from "../components/SearchStart.jsx";
 
 function Main() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/Category');
+  };
+
   return (
-      <div>
-        <SearchStart></SearchStart>
+      <div className="min-h-screen flex flex-col items-center justify-center">
+        <div className="font-madimi text-white text-[64px] text-center">MenuMate</div>
+        <SearchStart onClick={handleClick}></SearchStart>
       </div>
   );
 }
