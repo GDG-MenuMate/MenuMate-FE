@@ -48,41 +48,41 @@ function Category() {
           <div className="mt-[23px] mb-[23px] flex flex-col gap-[14px]">
             <ToggleButton id="diet" label="다이어트 식단" selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu}></ToggleButton>
             <AnimatePresence>
-            {selectedMenu === "diet" && (
-                <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="ml-[30px] flex flex-row gap-5">
-                  <div className="relative flex items-center">
-                    <input
-                        type="number"
-                        value={height}
-                        onChange={(e) => handleInput(e.target.value, setHeight)}
-                        placeholder="키"
-                        className="border-2 border-accent w-fit w-[104px] h-[52px] pl-[18px] rounded-full text-[16px]"
-                    />
-                    <span
-                        className="absolute right-[18px] top-1/2 -translate-y-1/2 text-[16px]">
-                      cm
-                    </span>
-                  </div>
-                  <div className="relative flex items-center">
-                    <input
-                        type="number"
-                        value={weight}
-                        onChange={(e) => handleInput(e.target.value, setWeight)}
-                        placeholder="몸무게"
-                        className="border-2 border-accent w-fit w-[104px] h-[52px] pl-[18px] rounded-full text-[16px]"
-                    />
-                    <span
-                        className="absolute right-[18px] top-1/2 -translate-y-1/2 text-[16px]">
-                      kg
-                    </span>
-                  </div>
-                </motion.div>
-            )}
+              {selectedMenu === "diet" && (
+                  <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="ml-[30px] flex flex-row gap-5">
+                    <div className="relative flex items-center">
+                      <input
+                          type="number"
+                          value={height}
+                          onChange={(e) => handleInput(e.target.value, setHeight)}
+                          placeholder="키"
+                          className="border-2 border-accent w-fit w-[104px] h-[52px] pl-[18px] rounded-full text-[16px]"
+                      />
+                      <span
+                          className="absolute right-[18px] top-1/2 -translate-y-1/2 text-[16px]">
+                        cm
+                      </span>
+                    </div>
+                    <div className="relative flex items-center">
+                      <input
+                          type="number"
+                          value={weight}
+                          onChange={(e) => handleInput(e.target.value, setWeight)}
+                          placeholder="몸무게"
+                          className="border-2 border-accent w-fit w-[104px] h-[52px] pl-[18px] rounded-full text-[16px]"
+                      />
+                      <span
+                          className="absolute right-[18px] top-1/2 -translate-y-1/2 text-[16px]">
+                        kg
+                      </span>
+                    </div>
+                  </motion.div>
+              )}
             </AnimatePresence>
             <ToggleButton id="vegan" label="채식" selectedMenu={selectedMenu}
                           setSelectedMenu={setSelectedMenu}></ToggleButton>
