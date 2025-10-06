@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useMenuStore from "../store/useMenuStore.js";
-import BaseSearchBox from "./BaseSearchBox.jsx";
+import BaseSearchBox from "./base/BaseSearchBox.jsx";
 import SearchIcon from "../assets/SearchIcon.svg";
 import SearchIconAccent from "../assets/SearchIconAccent.svg";
 

@@ -3,7 +3,7 @@ const Button = ({children, onClick, type="button"}) => {
       <button
         type={type}
         onClick={onClick}
-        className="bg-primary text-white font-bold text-base px-6 py-[18px] rounded-full
+        className="bg-primary text-white font-bold text-base px-6 h-[52px] rounded-full
         hover:bg-accent
         active:scale-95
         transition-transform duration-150"

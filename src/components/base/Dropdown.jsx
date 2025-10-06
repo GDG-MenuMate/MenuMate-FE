@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import ChevronDown from "../assets/Chevron-down.svg";
+import ChevronDown from "../../assets/Chevron-down.svg";
 
 const Dropdown = ({ id, label, openMenu, setOpenMenu, children }) => {
   const isOpen = openMenu === id;

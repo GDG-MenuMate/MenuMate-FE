@@ -1,4 +1,4 @@
-import BaseSearchBox from "./BaseSearchBox";
+import BaseSearchBox from "./base/BaseSearchBox.jsx";
 import SearchIconAccent from "../assets/SearchIconAccent.svg";
 import Button from "./Button.jsx";
 

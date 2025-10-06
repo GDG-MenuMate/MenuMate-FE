@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <div className="w-[393px] h-[852px] mx-auto border bg-primary">
           <ToastContainer
-              autoClose={3000}
+              autoClose={2000}
               closeOnClick={true}
           />
           <Routes>

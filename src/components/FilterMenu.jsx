@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Dropdown from "./Dropdown";
+import Dropdown from "./base/Dropdown.jsx";
 import useMenuStore from "../store/useMenuStore";
 
 const FilterMenu = () => {
