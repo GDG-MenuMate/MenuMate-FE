@@ -39,7 +39,7 @@ const FilterMenu = () => {
   };
 
   return (
-      <div className="flex gap-3">
+      <div className="flex gap-2">
         {/* 가격 */}
         <Dropdown id="price" label="가격" openMenu={openMenu} setOpenMenu={setOpenMenu}>
           <div className="flex flex-row gap-2">
