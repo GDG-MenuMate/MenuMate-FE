@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-toastify";
@@ -14,6 +14,10 @@ function Category() {
   const { category, setCategory, setHeight: setGlobalHeight, setWeight: setGlobalWeight } =
       useMenuStore();
   const [selectedMenu, setSelectedMenu] = useState(category);
+
+  useEffect(() => {
+    setSelectedMenu(category);
+  }, [category]);
 
   const handleClickPrompt = () => {
     navigate('/Prompt');
@@ -46,7 +50,7 @@ function Category() {
         <div className="h-screen mt-[68px] pt-9 pl-[39px] pr-[39px] bg-white rounded-t-[50px] shadow-[0_-1px_10px_rgba(0,0,0,0.15)]">
           <div className="font-jua text-[28px]">카테고리를 선택해 주세요</div>
           <div className="mt-[23px] mb-[23px] flex flex-col gap-[14px]">
-            <ToggleButton id="diet" label="다이어트 식단" selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu}></ToggleButton>
+            <ToggleButton id="diet" label="다이어트 식단" selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
             <AnimatePresence>
               {selectedMenu === "diet" && (
                   <motion.div
@@ -85,11 +89,11 @@ function Category() {
               )}
             </AnimatePresence>
             <ToggleButton id="vegan" label="채식" selectedMenu={selectedMenu}
-                          setSelectedMenu={setSelectedMenu}></ToggleButton>
+                          setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
             <ToggleButton id="low sugar" label="저당" selectedMenu={selectedMenu}
-                          setSelectedMenu={setSelectedMenu}></ToggleButton>
+                          setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
             <ToggleButton id="muslim" label="무슬림" selectedMenu={selectedMenu}
-                          setSelectedMenu={setSelectedMenu}></ToggleButton>
+                          setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
           </div>
           <div className="flex justify-end">
             {selectedMenu === null
