@@ -1,4 +1,5 @@
 import useMenuStore from "../store/useMenuStore.js";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import FilterMenu from "../components/FilterMenu.jsx";
 import SearchInput from "../components/SearchInput.jsx";
@@ -8,7 +9,13 @@ import Arrow_back from "../assets/Arrow_back.svg";
 
 function Prompt() {
   const navigate = useNavigate();
-  const { category } = useMenuStore();
+  const { category, dietInfo } = useMenuStore();
+
+  // 디버깅용
+  useEffect(() => {
+    console.log("[Prompt 페이지 진입]");
+    console.log("현재 전역 상태:", { category, dietInfo });
+  }, []);
 
   return(
       <div>

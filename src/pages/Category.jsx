@@ -9,11 +9,19 @@ import useMenuStore from "../store/useMenuStore.js";
 
 function Category() {
   const navigate = useNavigate();
+
+  const { category, setCategory, dietInfo, setDietInfo } = useMenuStore();
+
+  const [selectedMenu, setSelectedMenu] = useState(category);
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
-  const { category, setCategory, setHeight: setGlobalHeight, setWeight: setGlobalWeight } =
-      useMenuStore();
-  const [selectedMenu, setSelectedMenu] = useState(category);
+
+  // 디버깅용
+  useEffect(() => {
+    console.log("[Category 페이지 진입]");
+    console.log("현재 전역 상태:", { category, dietInfo });
+  }, []);
+
 
   useEffect(() => {
     setSelectedMenu(category);
@@ -29,8 +37,13 @@ function Category() {
         toast.error("키와 몸무게를 모두 입력해 주세요.");
         return;
       }
-      setGlobalHeight(height);
-      setGlobalWeight(weight);
+      setDietInfo({
+        height: parseFloat(height),
+        weight: parseFloat(weight),
+      });
+    }
+    else {
+      setDietInfo({ height: "", weight: "" });
     }
 
     setCategory(selectedMenu);

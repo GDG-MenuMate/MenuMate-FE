@@ -2,48 +2,49 @@ import { create } from 'zustand';
 
 const useMenuStore = create((set) => ({
   category: null, // 선택된 카테고리
-  height: '',
-  weight: '',
-  prompt: '',     // 프롬프트 입력값
-  filters: {      // 선택된 필터
-    price: { min: 0, max: 9999999 },
-    meal: ["아침", "점심", "저녁"],
-    location: ["문과 캠퍼스", "이과 캠퍼스"],
+  dietInfo: {
+    height: '',
+    weight: '',
   },
+  // 선택된 필터
+  price: { min: 0, max: 9999999 },
+  meals: ["BREAKFAST", "LUNCH", "DINNER"],
+  campus: ["humanities_campus", "science_campus"],
+  prompt: '',     // 프롬프트 입력값
 
   results: [],    // 검색 결과
 
   setCategory: (category) => set({ category }),
-  setHeight: (height) => set({ height }),
-  setWeight: (weight) => set({ weight }),
+  setDietInfo: (info) =>
+      set((state) => ({
+        dietInfo: { ...state.dietInfo, ...info },
+      })),
   setPrompt: (prompt) => set({ prompt }),
   setFilter: (key, value) =>
-      set((state) => ({
-        filters: { ...state.filters, [key]: value },
-      })),
+      set((state) => {
+        if (key === "price") return { price: value };
+        if (key === "meals") return { meals: value };
+        if (key === "campus") return { campus: value };
+        return state;
+      }),
   setResults: (results) => set({ results }),
 
   resetFilters: () =>
       set({
-        filters: {
-          price: { min: 0, max: 9999999 },
-          meal: ["아침", "점심", "저녁"],
-          location: ["문과 캠퍼스", "이과 캠퍼스"],
-        },
+        price: { min: 0, max: 9999999 },
+        meals: ["BREAKFAST", "LUNCH", "DINNER"],
+        campus: ["humanities_campus", "science_campus"],
       }),
 
   resetAll: () =>
       set({
         category: null,
-        height: '',
-        weight: '',
+        dietInfo: { height: '', weight: '' },
+        price: { min: 0, max: 9999999 },
+        meals: ["BREAKFAST", "LUNCH", "DINNER"],
+        campus: ["humanities_campus", "science_campus"],
         prompt: '',
         results: [],
-        filters: {
-          price: { min: 0, max: 9999999 },
-          meal: ["아침", "점심", "저녁"],
-          location: ["문과 캠퍼스", "이과 캠퍼스"],
-        },
       }),
 }));
 
