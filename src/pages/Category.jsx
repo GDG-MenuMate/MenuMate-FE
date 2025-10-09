@@ -61,7 +61,7 @@ function Category() {
                           value={height}
                           onChange={(e) => handleInput(e.target.value, setHeight)}
                           placeholder="키"
-                          className="border-2 border-accent w-[104px] h-[52px] pl-[18px] rounded-full text-[16px]"
+                          className="border-2 border-primary focus:outline-accent w-[104px] h-[52px] pl-[18px] rounded-full text-[16px]"
                       />
                       <span
                           className="absolute right-[18px] top-1/2 -translate-y-1/2 text-[16px]">
@@ -74,7 +74,7 @@ function Category() {
                           value={weight}
                           onChange={(e) => handleInput(e.target.value, setWeight)}
                           placeholder="몸무게"
-                          className="border-2 border-accent w-[104px] h-[52px] pl-[18px] rounded-full text-[16px]"
+                          className="border-2 border-primary focus:outline-accent w-[104px] h-[52px] pl-[18px] rounded-full text-[16px]"
                       />
                       <span
                           className="absolute right-[18px] top-1/2 -translate-y-1/2 text-[16px]">
