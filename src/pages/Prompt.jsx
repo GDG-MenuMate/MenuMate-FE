@@ -9,13 +9,18 @@ import Arrow_back from "../assets/Arrow_back.svg";
 
 function Prompt() {
   const navigate = useNavigate();
-  const { category, dietInfo } = useMenuStore();
+  const { category, dietInfo, setSearchTriggered } = useMenuStore();
 
   // 디버깅용
   useEffect(() => {
     console.log("[Prompt 페이지 진입]");
     console.log("현재 전역 상태:", { category, dietInfo });
   }, []);
+
+  const handleSearch = () => {
+    setSearchTriggered(true);
+    navigate("/Loading");
+  }
 
   return(
       <div>

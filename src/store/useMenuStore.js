@@ -12,6 +12,7 @@ const useMenuStore = create((set) => ({
   campus: ["humanities_campus", "science_campus"],
   prompt: '',     // 프롬프트 입력값
 
+  searchTriggered: false, // 검색 요청 여부
   results: [],    // 검색 결과
 
   setCategory: (category) => set({ category }),
@@ -27,6 +28,7 @@ const useMenuStore = create((set) => ({
         if (key === "campus") return { campus: value };
         return state;
       }),
+  setSearchTriggered: (value) => set({ searchTriggered: value }),
   setResults: (results) => set({ results }),
 
   resetFilters: () =>
@@ -44,6 +46,7 @@ const useMenuStore = create((set) => ({
         meals: ["BREAKFAST", "LUNCH", "DINNER"],
         campus: ["humanities_campus", "science_campus"],
         prompt: '',
+        searchTriggered: false,
         results: [],
       }),
 }));
