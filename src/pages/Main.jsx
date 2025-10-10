@@ -1,11 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import SearchStart from "../components/SearchStart.jsx";
+import useMenuStore from "../store/useMenuStore.js";
 
 function Main() {
   const navigate = useNavigate();
+  const { resetAll } = useMenuStore();
 
   const handleClick = () => {
+    resetAll();
     navigate('/Category');
   };
 
