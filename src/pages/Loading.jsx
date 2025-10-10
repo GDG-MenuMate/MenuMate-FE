@@ -5,7 +5,7 @@ import useMenuStore from "../store/useMenuStore.js";
 
 function Loading() {
   const navigate = useNavigate();
-  const { searchTriggered } = useMenuStore();
+  const { category, prompt, price, meals, campus, searchTriggered } = useMenuStore();
 
   /*
   useEffect(() => {
@@ -15,6 +15,12 @@ function Loading() {
     }
   }, [searchTriggered, navigate]);
   */
+
+  // 디버깅용
+  useEffect(() => {
+    console.log("[Category 페이지 진입]");
+    console.log("현재 전역 상태:", { category, prompt });
+  }, []);
 
   const text = "식단을 짜고 있어요 . . .";
 

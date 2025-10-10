@@ -44,7 +44,7 @@ function Prompt() {
               />
             </Button>
             {category != null &&
-                <Button children="카테고리만으로 찾기"></Button>}
+                <Button children="카테고리만으로 찾기" onClick={handleSearch}></Button>}
           </div>
         </div>
       </div>
