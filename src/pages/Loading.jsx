@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import useMenuStore from "../store/useMenuStore.js";
 
 function Loading() {
@@ -15,9 +16,34 @@ function Loading() {
   }, [searchTriggered, navigate]);
   */
 
+  const text = "식단을 짜고 있어요 . . .";
+
+  const textVariants = {
+    animate: {
+      y: [0, -8, 0],
+    }
+  }
+
   return(
       <div className="min-h-screen flex font-jua text-white text-[32px] items-center justify-center">
-        식단을 짜고 있어요. . .
+        {text.split("").map((char, i) => (
+            <motion.span
+                key={i}
+                variants={textVariants}
+                initial="initial"
+                animate="animate"
+                transition={{
+                  delay: i * 0.1, // 글자마다 순차 딜레이
+                  duration: 0.6,
+                  repeat: Infinity,
+                  repeatDelay: 2, // 한 문장 끝나고 살짝 쉬었다 반복
+                  ease: "easeInOut",
+                }}
+            >
+              {char === " " ? "\u00A0" // 띄어쓰기 유지
+                  : char}
+            </motion.span>
+        ))}
       </div>
   );
 }
