@@ -14,6 +14,7 @@ export default {
         sans: ['Nanum Gothic', 'sans-serif'],
         jua: ['Jua', 'sans-serif'],
         madimi: ['Madimi One', 'sans-serif'],
+        pen: ['Nanum Pen Script', 'sans-serif'],
       }
     },
   },

@@ -5,7 +5,7 @@ import useMenuStore from "../store/useMenuStore.js";
 
 function Loading() {
   const navigate = useNavigate();
-  const { category, prompt, price, meals, campus, searchTriggered } = useMenuStore();
+  const { category, prompt, price, meals, campus, searchTriggered, results } = useMenuStore();
 
   /*
   useEffect(() => {
@@ -16,10 +16,17 @@ function Loading() {
   }, [searchTriggered, navigate]);
   */
 
+  useEffect(() => {
+    if (results && results.length > 0) {
+      console.log("검색 결과 수신 완료, Result 페이지로 이동");
+      navigate("/result");
+    }
+  }, [results, navigate]);
+
   // 디버깅용
   useEffect(() => {
     console.log("[Category 페이지 진입]");
-    console.log("현재 전역 상태:", { category, prompt });
+    console.log("현재 전역 상태:", { category, prompt, price, meals, campus });
   }, []);
 
   const text = "식단을 짜고 있어요 . . .";
