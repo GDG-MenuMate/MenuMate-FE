@@ -11,9 +11,39 @@ function Result() {
 
   // 테스트용
   const results = [
-    { meal: "BREAKFAST", restaurant: "본죽", menu: "소고기죽" },
-    { meal: "LUNCH", restaurant: "본죽", menu: "소고기죽" },
-    { meal: "DINNER", restaurant: "본죽", menu: "소고기죽" },
+    {
+      meal: "아침",
+      restaurant_name: "샐러디",
+      name: "닭가슴살 샐러드",
+      description: "신선한 채소와 닭가슴살이 들어간 건강식",
+      calories: 350,
+      image_url: "...",
+      url: "...",
+      latitude: 12.34,
+      longitude: 12.34
+    },
+    {
+      meal: "점심",
+      restaurant_name: "샐러디",
+      name: "닭가슴살 샐러드",
+      description: "신선한 채소와 닭가슴살이 들어간 건강식",
+      calories: 350,
+      image_url: "...",
+      url: "...",
+      latitude: 12.34,
+      longitude: 12.34
+    },
+    {
+      meal: "저녁",
+      restaurant_name: "샐러디",
+      name: "닭가슴살 샐러드",
+      description: "신선한 채소와 닭가슴살이 들어간 건강식",
+      calories: 350,
+      image_url: "...",
+      url: "...",
+      latitude: 12.34,
+      longitude: 12.34
+    }
   ];
 
   /*
@@ -33,7 +63,7 @@ function Result() {
           {results.map((res, i) => (
             <div
                 key={i}
-                className={`flex justify-end gap-[39px] ${
+                className={`flex h-[150px] items-center justify-end gap-[30px] ${
                   i % 2 === 0 ? "flex-row" : "flex-row-reverse"
                 }`}
             >
@@ -41,19 +71,17 @@ function Result() {
               <div className="w-[135px] h-[135px] bg-gray-300" />
 
               <div
-                  className={`flex flex-col w-[113px] font-pen text-[24px] text-black ${
-                      i % 2 === 1 && "text-right"
-                  }`}>
-                <div>{res.meal === 'BREAKFAST' ? '아침'
-                    : res.meal === 'LUNCH' ? '점심'
-                        : '저녁'}</div>
-                <div>{res.restaurant}</div>
-                <div>{res.menu}</div>
+                  className="flex flex-col w-[150px] font-pen text-[22px] text-black">
+                <div>{res.meal}</div>
+                <div className="leading-tight">
+                  <div>{res.restaurant_name}</div>
+                  <div>{res.name}</div>
+                  <div
+                      className="text-gray-500 text-[20px] text-left">{res.description}</div>
+                </div>
                 <img
                     src={Highlight}
-                    className={`absolute w-10 ${
-                        i % 2 === 0 ? "mt-6 -ml-1.5" : "mt-6 ml-[77px]"
-                    }`}
+                    className="absolute w-10 mt-[23px] -ml-1.5"
                 />
               </div>
             </div>
