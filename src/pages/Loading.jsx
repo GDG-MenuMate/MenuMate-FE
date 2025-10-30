@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -5,7 +6,9 @@ import useMenuStore from "../store/useMenuStore.js";
 
 function Loading() {
   const navigate = useNavigate();
-  const { category, prompt, price, meals, campus, searchTriggered, results } = useMenuStore();
+  const { category, prompt, price, meals, campus, dietInfo,
+    searchTriggered, setSearchTriggered, results, setResults, setError
+  } = useMenuStore();
 
   /*
   useEffect(() => {
@@ -17,11 +20,47 @@ function Loading() {
   */
 
   useEffect(() => {
+    const fetchMenus = async () => {
+      try {
+        const body = {
+          category,
+          dietInfo,
+          campus,
+          meals,
+          price,
+          prompt: prompt || "",
+        };
+
+        // debug
+        console.log("요청 보냄:", body);
+
+        const res = await axios.post(
+            "http://localhost:8080/api/recommend",
+            body,
+            { headers: { "Content-Type": "application/json" }}
+        );
+
+        console.log("응답 수신:", res.data);
+
+        setResults(res.data.menus);
+        setSearchTriggered(false);
+      } catch (err) {
+        console.error("요청 실패:", err);
+        setError(err);
+        setSearchTriggered(false);
+        alert(err.response?.data?.msg || "메뉴 검색에 실패했습니다.");
+        navigate("/");
+      }
+    };
+
+    if (searchTriggered) fetchMenus();
+  }, [searchTriggered]);
+
+  useEffect(() => {
     if (results && results.length > 0) {
-      console.log("검색 결과 수신 완료, Result 페이지로 이동");
       navigate("/result");
     }
-  }, [results, navigate]);
+  }, [results]);
 
   // 디버깅용
   useEffect(() => {

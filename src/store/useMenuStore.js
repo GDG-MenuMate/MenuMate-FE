@@ -14,6 +14,7 @@ const useMenuStore = create((set) => ({
 
   searchTriggered: false, // 검색 요청 여부
   results: [],    // 검색 결과
+  error: null,
 
   setCategory: (category) => set({ category }),
   setDietInfo: (info) =>
@@ -30,6 +31,7 @@ const useMenuStore = create((set) => ({
       }),
   setSearchTriggered: (value) => set({ searchTriggered: value }),
   setResults: (results) => set({ results }),
+  setError: (err) => set({error: err}),
 
   resetFilters: () =>
       set({
