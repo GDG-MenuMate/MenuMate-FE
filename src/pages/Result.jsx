@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import useMenuStore from "../store/useMenuStore.js";
 import Background from "../assets/Background.png";
 import Highlight from "../assets/Highlight.png";
+import Home from "../assets/Home.svg";
+import Export from "../assets/Export.svg";
 
 function Result() {
   const navigate = useNavigate();
 
-  // const { results } = useMenuStore();
+  const { /*results,*/ resetAll } = useMenuStore();
 
   // 테스트용
   const results = [
@@ -55,6 +57,11 @@ function Result() {
   }, [results, navigate]);
   */
 
+  const handleHomeClick = () => {
+    resetAll();
+    navigate("/");
+  }
+
   /* 지도 API */
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   /* URL 생성 */
@@ -68,49 +75,71 @@ function Result() {
   }
 
   return(
-      <div className="flex h-full justify-center bg-cover bg-center"
-           style={{ backgroundImage: `url(${Background})` }}
+      <div className="flex relative h-full justify-center bg-cover bg-center"
+           style={{backgroundImage: `url(${Background})`}}
       >
-        <div className="flex flex-col mt-[226px] gap-10">
+        <button className="absolute flex justify-center items-center left-[31px] top-[46px] w-[58px] h-[58px]
+                          bg-primary rounded-full shadow-[2px_2px_4px_rgba(0,0,0,0.25)]
+                          hover:bg-accent
+                          active:scale-95
+                          transition-transform duration-150"
+                onClick={handleHomeClick}>
+          <img
+              src={Home}
+              className="w-7 h-7"
+          />
+        </button>
+        <button className="absolute flex justify-center items-center right-[31px] bottom-[46px] w-[58px] h-[58px]
+                          bg-primary rounded-full shadow-[2px_2px_4px_rgba(0,0,0,0.25)]
+                          hover:bg-accent
+                          active:scale-95
+                          transition-transform duration-150">
+          <img
+              src={Export}
+              className="w-7 h-7"
+          />
+        </button>
+        <div className="flex flex-col mt-[155px] gap-6">
           {results.map((res, i) => (
-            <div
-                key={i}
-                className={`flex h-[150px] items-center justify-end gap-[30px] ${
-                  i % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                }`}
-            >
-              {/* 메뉴 사진, 지도 */}
-              <div>
-                <div className="absolute mt-[84px] ml-[74px] w-20 h-20 bg-gray-500 rounded-full bg-cover bg-center"
-                     style={{ backgroundImage: `url(${res.image_url})` }} />
-                <div className="w-[135px] h-[135px] bg-gray-300">
+              <div
+                  key={i}
+                  className={`flex h-[150px] items-center justify-end gap-[30px] ${
+                      i % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                  }`}
+              >
+                {/* 메뉴 사진, 지도 */}
+                <div>
+                  <div
+                      className="absolute mt-[84px] ml-[74px] w-20 h-20 bg-gray-500 rounded-full bg-cover bg-center"
+                      style={{backgroundImage: `url(${res.image_url})`}}/>
+                  <div className="w-[135px] h-[135px] bg-gray-300">
+                    <img
+                        src={getMapUrl(res.latitude, res.longitude)}
+                        alt="지도"
+                        className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                <div
+                    className={`flex flex-col w-[145px] font-pen text-[22px] text-black ${
+                        i % 2 === 1 && "text-right"
+                    }`}>
+                  <div>{res.meal}</div>
+                  <div className="leading-tight">
+                    <div>{res.restaurant_name}</div>
+                    <div>{res.name}</div>
+                    <div
+                        className="text-gray-500 text-[20px]">{res.description}</div>
+                  </div>
                   <img
-                      src={getMapUrl(res.latitude, res.longitude)}
-                      alt="지도"
-                      className="w-full h-full object-cover"
+                      src={Highlight}
+                      className={`absolute w-10 mt-[23px] ${
+                          i % 2 === 0 ? "-ml-1.5" : "ml-[110px]"
+                      }`}
                   />
                 </div>
               </div>
-
-              <div
-                  className={`flex flex-col w-[145px] font-pen text-[22px] text-black ${
-                    i % 2 === 1 && "text-right"
-                  }`}>
-                <div>{res.meal}</div>
-                <div className="leading-tight">
-                  <div>{res.restaurant_name}</div>
-                  <div>{res.name}</div>
-                  <div
-                      className="text-gray-500 text-[20px]">{res.description}</div>
-                </div>
-                <img
-                    src={Highlight}
-                    className={`absolute w-10 mt-[23px] ${
-                      i % 2 === 0 ? "-ml-1.5" : "ml-[110px]"
-                    }`}
-                />
-              </div>
-            </div>
           ))}
         </div>
       </div>

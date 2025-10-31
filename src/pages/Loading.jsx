@@ -7,13 +7,15 @@ import useMenuStore from "../store/useMenuStore.js";
 function Loading() {
   const navigate = useNavigate();
   const { category, prompt, price, meals, campus, dietInfo,
-    searchTriggered, setSearchTriggered, results, setResults, setError
+    searchTriggered, setSearchTriggered, results, setResults, setError,
+    resetAll
   } = useMenuStore();
 
   /*
   useEffect(() => {
     if (!searchTriggered) {
       console.warn("허가되지 않은 접근 감지, 메인으로 리다이렉트");
+      resetAll();
       navigate("/");
     }
   }, [searchTriggered, navigate]);
