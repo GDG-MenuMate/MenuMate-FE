@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useMenuStore from "../store/useMenuStore.js";
+import html2canvas from "html2canvas";
 import Background from "../assets/Background.png";
 import Highlight from "../assets/Highlight.png";
 import Home from "../assets/Home.svg";
@@ -57,9 +58,26 @@ function Result() {
   }, [results, navigate]);
   */
 
-  const handleHomeClick = () => {
+  const handleClickHome = () => {
     resetAll();
     navigate("/");
+  }
+
+  const handleExport = () => {
+    const element = document.getElementById("capture-area");
+
+    html2canvas(element, {
+      useCORS: true, // 외부 이미지 저장
+      scrollX: -window.scrollX,
+      scrollY: -window.scrollY,
+      ignoreElements: (el) => el.id === "floating-button",
+    }).then((canvas) => {
+      // 이미지 데이터 생성
+      const link = document.createElement("a");
+      link.download = "menumate.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    })
   }
 
   /* 지도 API */
@@ -75,25 +93,26 @@ function Result() {
   }
 
   return(
-      <div className="flex relative h-full justify-center bg-cover bg-center"
+      <div id="capture-area" className="flex relative h-full justify-center bg-primary bg-cover bg-center"
            style={{backgroundImage: `url(${Background})`}}
       >
-        <button className="absolute flex justify-center items-center left-[31px] top-[46px] w-[58px] h-[58px]
+        <button id="floating-button" className="absolute flex justify-center items-center left-[31px] top-[46px] w-[58px] h-[58px]
                           bg-primary rounded-full shadow-[2px_2px_4px_rgba(0,0,0,0.25)]
                           hover:bg-accent
                           active:scale-95
                           transition-transform duration-150"
-                onClick={handleHomeClick}>
+                onClick={handleClickHome}>
           <img
               src={Home}
               className="w-7 h-7"
           />
         </button>
-        <button className="absolute flex justify-center items-center right-[31px] bottom-[46px] w-[58px] h-[58px]
+        <button id="floating-button" className="absolute flex justify-center items-center right-[31px] bottom-[46px] w-[58px] h-[58px]
                           bg-primary rounded-full shadow-[2px_2px_4px_rgba(0,0,0,0.25)]
                           hover:bg-accent
                           active:scale-95
-                          transition-transform duration-150">
+                          transition-transform duration-150"
+                onClick={handleExport}>
           <img
               src={Export}
               className="w-7 h-7"
@@ -103,14 +122,14 @@ function Result() {
           {results.map((res, i) => (
               <div
                   key={i}
-                  className={`flex h-[150px] items-center justify-end gap-[30px] ${
+                  className={`flex min-h-[150px] items-center justify-end gap-[30px] ${
                       i % 2 === 0 ? "flex-row" : "flex-row-reverse"
                   }`}
               >
                 {/* 메뉴 사진, 지도 */}
-                <div>
+                <div className="relative flex items-center">
                   <div
-                      className="absolute mt-[84px] ml-[74px] w-20 h-20 bg-gray-500 rounded-full bg-cover bg-center"
+                      className="absolute left-[74px] top-[84px] w-20 h-20 bg-gray-500 rounded-full bg-cover bg-center"
                       style={{backgroundImage: `url(${res.image_url})`}}/>
                   <div className="w-[135px] h-[135px] bg-gray-300">
                     <img
@@ -125,19 +144,18 @@ function Result() {
                     className={`flex flex-col w-[145px] font-pen text-[22px] text-black ${
                         i % 2 === 1 && "text-right"
                     }`}>
-                  <div>{res.meal}</div>
+                  <div className="text-2xl -mb-2">{res.meal}</div>
+                  <div className="flex mb-1">
+                    <img src={Highlight}
+                         className={`w-10 ${ i % 2 === 0 ? "-ml-1.5" : "ml-[110px]" }`}
+                    />
+                  </div>
                   <div className="leading-tight">
                     <div>{res.restaurant_name}</div>
                     <div>{res.name}</div>
                     <div
                         className="text-gray-500 text-[20px]">{res.description}</div>
                   </div>
-                  <img
-                      src={Highlight}
-                      className={`absolute w-10 mt-[23px] ${
-                          i % 2 === 0 ? "-ml-1.5" : "ml-[110px]"
-                      }`}
-                  />
                 </div>
               </div>
           ))}
