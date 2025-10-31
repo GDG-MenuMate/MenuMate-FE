@@ -70,7 +70,7 @@ function Result() {
       useCORS: true, // 외부 이미지 저장
       scrollX: -window.scrollX,
       scrollY: -window.scrollY,
-      ignoreElements: (el) => el.id === "floating-button",
+      ignoreElements: (el) => el.classList.contains("floating-button"),
     }).then((canvas) => {
       // 이미지 데이터 생성
       const link = document.createElement("a");
@@ -96,7 +96,7 @@ function Result() {
       <div id="capture-area" className="flex relative h-full justify-center bg-primary bg-cover bg-center"
            style={{backgroundImage: `url(${Background})`}}
       >
-        <button id="floating-button" className="absolute flex justify-center items-center left-[31px] top-[46px] w-[58px] h-[58px]
+        <button className="floating-button absolute flex justify-center items-center left-[31px] top-[46px] w-[58px] h-[58px]
                           bg-primary rounded-full shadow-[2px_2px_4px_rgba(0,0,0,0.25)]
                           hover:bg-accent
                           active:scale-95
@@ -107,7 +107,7 @@ function Result() {
               className="w-7 h-7"
           />
         </button>
-        <button id="floating-button" className="absolute flex justify-center items-center right-[31px] bottom-[46px] w-[58px] h-[58px]
+        <button className="floating-button absolute flex justify-center items-center right-[31px] bottom-[46px] w-[58px] h-[58px]
                           bg-primary rounded-full shadow-[2px_2px_4px_rgba(0,0,0,0.25)]
                           hover:bg-accent
                           active:scale-95
