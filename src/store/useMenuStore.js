@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 const useMenuStore = create(
     persist (
@@ -56,7 +56,9 @@ const useMenuStore = create(
               }),
         }),
         {
-          name: "menu-storage", // localStorage의 key 이름
+          name: "menu-storage", // storage의 key 이름
+          // persist 저장소로 sessionStorage를 사용 (탭 닫으면 초기화)
+          storage: createJSONStorage(() => sessionStorage),
           partialize: (state) => ({
             // persist 하고 싶은 값만 저장
             category: state.category,
