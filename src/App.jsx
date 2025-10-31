@@ -9,7 +9,7 @@ import {ToastContainer} from "react-toastify";
 function App() {
   return (
       <BrowserRouter>
-        <div className="w-[393px] h-[852px] mx-auto border bg-primary">
+        <div className="w-[393px] h-screen mx-auto overflow-hidden border bg-primary">
           <ToastContainer
               autoClose={2000}
               closeOnClick={true}
