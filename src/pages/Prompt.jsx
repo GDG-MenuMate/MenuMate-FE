@@ -9,13 +9,25 @@ import Arrow_back from "../assets/Arrow_back.svg";
 
 function Prompt() {
   const navigate = useNavigate();
-  const { category, dietInfo, setSearchTriggered } = useMenuStore();
+  const { category, dietInfo, step, setSearchTriggered, resetAll } = useMenuStore();
 
   // 디버깅용
   useEffect(() => {
     console.log("[Prompt 페이지 진입]");
     console.log("현재 전역 상태:", { category, dietInfo });
   }, []);
+
+  useEffect(() => {
+    if (!step.start) {
+      console.warn("허가되지 않은 접근 감지, 메인으로 리다이렉트");
+      resetAll();
+      navigate("/");
+    }
+    else if (!step.first) {
+      console.warn("허가되지 않은 접근 감지, 카테고리 선택으로 리다이렉트");
+      navigate("/Category");
+    }
+  }, [step.start, step.first, navigate]);
 
   const handleSearch = () => {
     setSearchTriggered(true);

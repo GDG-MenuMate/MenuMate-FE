@@ -8,7 +8,7 @@ function Loading() {
   const navigate = useNavigate();
   const { category, prompt, price, meals, campus, dietInfo,
     searchTriggered, setSearchTriggered, results, setResults, setError,
-    resetAll
+    setStep, resetAll
   } = useMenuStore();
 
   /*
@@ -51,6 +51,7 @@ function Loading() {
         setError(err);
         setSearchTriggered(false);
         alert(err.response?.data?.msg || "메뉴 검색에 실패했습니다.");
+        resetAll();
         navigate("/");
       }
     };
@@ -60,6 +61,7 @@ function Loading() {
 
   useEffect(() => {
     if (results && results.length > 0) {
+      setStep({start: false, first: false});
       navigate("/result");
     }
   }, [results]);

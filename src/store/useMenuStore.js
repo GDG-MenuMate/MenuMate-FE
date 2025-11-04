@@ -15,6 +15,7 @@ const useMenuStore = create(
           campus: ["humanities_campus", "science_campus"],
           prompt: '',     // 프롬프트 입력값
 
+          step: {start: false, first: false}, // 단계 수행 여부 (category, prompt 페이지 url로 강제 접근 방지)
           searchTriggered: false, // 검색 요청 여부
           results: [],    // 검색 결과
           error: null,
@@ -32,6 +33,10 @@ const useMenuStore = create(
                 if (key === "campus") return {campus: value};
                 return state;
               }),
+          setStep: (step) =>
+              set((state) => ({
+                step: {...state.step, ...step},
+              })),
           setSearchTriggered: (value) => set({searchTriggered: value}),
           setResults: (results) => set({results}),
           setError: (err) => set({error: err}),
@@ -51,6 +56,7 @@ const useMenuStore = create(
                 meals: ["BREAKFAST", "LUNCH", "DINNER"],
                 campus: ["humanities_campus", "science_campus"],
                 prompt: '',
+                step: {start: false, first: false},
                 searchTriggered: false,
                 results: [],
               }),
@@ -67,6 +73,7 @@ const useMenuStore = create(
             meals: state.meals,
             campus: state.campus,
             prompt: state.prompt,
+            step: state.step,
             results: state.results,
           }),
         }

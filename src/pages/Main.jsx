@@ -5,10 +5,11 @@ import useMenuStore from "../store/useMenuStore.js";
 
 function Main() {
   const navigate = useNavigate();
-  const { resetAll } = useMenuStore();
+  const { setStep, resetAll } = useMenuStore();
 
   const handleClick = () => {
     resetAll();
+    setStep({start: true});
     navigate('/Category');
   };
 

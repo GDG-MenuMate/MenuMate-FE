@@ -10,7 +10,7 @@ import useMenuStore from "../store/useMenuStore.js";
 function Category() {
   const navigate = useNavigate();
 
-  const { category, setCategory, dietInfo, setDietInfo } = useMenuStore();
+  const { category, setCategory, dietInfo, step, setDietInfo, setStep, resetAll } = useMenuStore();
 
   const [selectedMenu, setSelectedMenu] = useState(category);
   const [height, setHeight] = useState("");
@@ -22,12 +22,20 @@ function Category() {
     console.log("현재 전역 상태:", { category, dietInfo });
   }, []);
 
+  useEffect(() => {
+    if (!step.start) {
+      console.warn("허가되지 않은 접근 감지, 메인으로 리다이렉트");
+      resetAll();
+      navigate("/");
+    }
+  }, [step.start, navigate]);
 
   useEffect(() => {
     setSelectedMenu(category);
   }, [category]);
 
   const handleClickPrompt = () => {
+    setStep({first: true});
     navigate('/Prompt');
   }
 
@@ -47,6 +55,7 @@ function Category() {
     }
 
     setCategory(selectedMenu);
+    setStep({first: true});
     navigate("/Prompt");
   }
 
