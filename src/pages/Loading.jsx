@@ -11,7 +11,6 @@ function Loading() {
     setStep, resetAll
   } = useMenuStore();
 
-  /*
   useEffect(() => {
     if (!searchTriggered) {
       console.warn("허가되지 않은 접근 감지, 메인으로 리다이렉트");
@@ -19,7 +18,6 @@ function Loading() {
       navigate("/");
     }
   }, [searchTriggered, navigate]);
-  */
 
   useEffect(() => {
     const fetchMenus = async () => {
@@ -37,7 +35,7 @@ function Loading() {
         console.log("요청 보냄:", body);
 
         const res = await axios.post(
-            "http://localhost:8080/api/recommend",
+            "http://localhost:3000/api/recommend",
             body,
             { headers: { "Content-Type": "application/json" }}
         );
