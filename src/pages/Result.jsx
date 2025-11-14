@@ -144,12 +144,13 @@ function Result() {
 
                 <div
                     className={`flex flex-col w-[145px] font-pen text-[22px] text-black ${
-                        i % 2 === 1 && "text-right"
+                        i % 2 === 1 ? "items-end text-right" : "items-start"
                     }`}>
-                  <div className="text-2xl -mb-2">{res.meals}</div>
-                  <div className="flex mb-1">
+                  <div className="relative inline-block text-2xl -mb-2">
+                    {res.meals}
+                    <span className="text-[18px] ml-1.5 text-gray-500">({res.calories}kcal)</span>
                     <img src={Highlight}
-                         className={`w-10 ${ i % 2 === 0 ? "-ml-1.5" : "ml-[110px]" }`}
+                         className="absolute flex -left-1.5 bottom-[7px] w-10"
                     />
                   </div>
                   <div className="leading-tight">
@@ -159,7 +160,9 @@ function Result() {
                         <span className="ml-0.5 text-sm">↗</span>
                       </div>
                     </a>
-                    <div>{res.name}</div>
+                    <div>
+                      {res.name}
+                    </div>
                     <div
                         className="text-gray-500 text-[20px]">{res.description}</div>
                   </div>
