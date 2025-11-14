@@ -10,10 +10,10 @@ import Export from "../assets/Export.svg";
 function Result() {
   const navigate = useNavigate();
 
-  const { results, resetAll } = useMenuStore();
+  const { /*results,*/ resetAll } = useMenuStore();
 
   // 테스트용
-  /*
+
   const results = [
     {
       meals: "아침",
@@ -49,15 +49,15 @@ function Result() {
       longitude: 127.030573281
     }
   ];
-   */
 
+/*
   useEffect(() => {
     if (!results || results.length === 0) {
       console.warn("허가되지 않은 접근 감지, 메인으로 리다이렉트");
       navigate("/");
     }
   }, [results, navigate]);
-
+*/
   const handleClickHome = () => {
     resetAll();
     navigate("/");
@@ -153,7 +153,7 @@ function Result() {
                          className="absolute flex -left-1.5 bottom-[7px] w-10"
                     />
                   </div>
-                  <div className="leading-tight">
+                  <div className="mt-1 leading-tight">
                     <a href={res.url} target="_blank" rel="noopener noreferrer">
                       <div className="text-accent">
                         {res.restaurant_name}
