@@ -20,7 +20,7 @@
 src/
 ┣ assets/        # 아이콘, 이미지(.svg, .png 등)
 ┣ components/    # UI 컴포넌트
-    ┗ base/      # 컴포넌트를 구성하는 기반
+┃   ┗ base/      # 컴포넌트를 구성하는 기반
 ┣ pages/         # 화면 단위 컴포넌트
 ┗ store/         # Zustand 상태 관리 (useMenuStore.js)
 ```
