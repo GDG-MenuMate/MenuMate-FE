@@ -16,7 +16,7 @@ function Result() {
   /*
   const results = [
     {
-      meal: "아침",
+      meals: "아침",
       restaurant_name: "샐러디",
       name: "닭가슴살 샐러드",
       description: "신선한 채소와 닭가슴살이 들어간 건강식",
@@ -27,7 +27,7 @@ function Result() {
       longitude: 127.030573281
     },
     {
-      meal: "점심",
+      meals: "점심",
       restaurant_name: "본죽",
       name: "소고기 죽",
       description: "맛있는 소고기 죽",
@@ -38,7 +38,7 @@ function Result() {
       longitude: 127.029229203
     },
     {
-      meal: "저녁",
+      meals: "저녁",
       restaurant_name: "샐러디",
       name: "닭가슴살 샐러드",
       description: "신선한 채소와 닭가슴살이 들어간 건강식",
@@ -128,9 +128,11 @@ function Result() {
               >
                 {/* 메뉴 사진, 지도 */}
                 <div className="relative flex items-center">
+                  {/* 우선은 사진 없이 진행
                   <div
                       className="absolute left-[74px] top-[84px] w-20 h-20 bg-gray-500 rounded-full bg-cover bg-center"
                       style={{backgroundImage: `url(${res.image_url})`}}/>
+                  */}
                   <div className="w-[135px] h-[135px] bg-gray-300">
                     <img
                         src={getMapUrl(res.latitude, res.longitude)}
@@ -144,7 +146,7 @@ function Result() {
                     className={`flex flex-col w-[145px] font-pen text-[22px] text-black ${
                         i % 2 === 1 && "text-right"
                     }`}>
-                  <div className="text-2xl -mb-2">{res.meal}</div>
+                  <div className="text-2xl -mb-2">{res.meals}</div>
                   <div className="flex mb-1">
                     <img src={Highlight}
                          className={`w-10 ${ i % 2 === 0 ? "-ml-1.5" : "ml-[110px]" }`}

@@ -110,11 +110,11 @@ function Category() {
                   </motion.div>
               )}
             </AnimatePresence>
-            <ToggleButton id="vegan" label="채식" selectedMenu={selectedMenu}
+            <ToggleButton id="vegetarian" label="채식" selectedMenu={selectedMenu}
                           setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
-            <ToggleButton id="low sugar" label="저당" selectedMenu={selectedMenu}
+            <ToggleButton id="low_sugar" label="저당" selectedMenu={selectedMenu}
                           setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
-            <ToggleButton id="muslim" label="무슬림" selectedMenu={selectedMenu}
+            <ToggleButton id="halal" label="무슬림" selectedMenu={selectedMenu}
                           setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
           </div>
           <div className="flex justify-end">
