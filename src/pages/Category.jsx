@@ -112,8 +112,6 @@ function Category() {
             </AnimatePresence>
             <ToggleButton id="vegetarian" label="채식" selectedMenu={selectedMenu}
                           setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
-            <ToggleButton id="low_sugar" label="저당" selectedMenu={selectedMenu}
-                          setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
             <ToggleButton id="halal" label="무슬림" selectedMenu={selectedMenu}
                           setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
           </div>
