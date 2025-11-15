@@ -48,15 +48,15 @@ const Dropdown = ({ id, label, openMenu, setOpenMenu, children }) => {
         </div>
         {isOpen && (
             <div>
-              <div ref={menuRef} className="absolute left-1/2 transform -translate-x-1/2 mt-[10px]
+              <div ref={menuRef} className="fixed left-1/2 transform -translate-x-1/2 mt-[10px]
               w-[327px] h-[86px] bg-white
               border-2 border-primary rounded-[20px]
               shadow-[0_2px_5px_rgba(0,0,0,0.15)]
               flex items-center justify-center z-20">
                 {children}
               </div>
-              <div className="bg-white opacity-75
-              absolute left-1/2 transform -translate-x-1/2 w-[393px] h-[710px] z-10"></div>
+              <div className="fixed bg-white opacity-75
+              left-1/2 transform -translate-x-1/2 w-[393px] h-[710px] z-10"></div>
             </div>
         )}
       </div>

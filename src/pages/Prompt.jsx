@@ -36,7 +36,7 @@ function Prompt() {
 
   return(
       <div>
-        <div className="h-screen mt-[68px] pt-9 pl-[39px] pr-[39px] bg-white rounded-t-[50px] shadow-[0_-1px_10px_rgba(0,0,0,0.15)]
+        <div className="h-screen overflow-hidden mt-[68px] pt-9 pl-[39px] pr-[39px] bg-white rounded-t-[50px] shadow-[0_-1px_10px_rgba(0,0,0,0.15)]
          flex flex-col">
           <div className="flex flex-row mb-[14px]">
             <img
@@ -44,9 +44,9 @@ function Prompt() {
                 alt="filter"
                 className="w-22 h-22 mr-2"
             />
-            <FilterMenu></FilterMenu>
+            <FilterMenu />
           </div>
-          <SearchInput></SearchInput>
+          <SearchInput />
           <div className="flex flex-row justify-between mt-[23px]">
             <Button onClick={() => navigate(-1)}>
               <img
