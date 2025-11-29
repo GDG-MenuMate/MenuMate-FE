@@ -40,7 +40,7 @@ function Category() {
   }
 
   const handleClickSelect = () => {
-    if (selectedMenu === "diet") {
+    if (selectedMenu === "DIET") {
       if (height.trim() === "" || weight.trim() === "") {
         toast.error("키와 몸무게를 모두 입력해 주세요.");
         return;
@@ -72,9 +72,9 @@ function Category() {
         <div className="h-screen mt-[68px] pt-9 pl-[39px] pr-[39px] bg-white rounded-t-[50px] shadow-[0_-1px_10px_rgba(0,0,0,0.15)]">
           <div className="font-jua text-[28px]">카테고리를 선택해 주세요</div>
           <div className="mt-[23px] mb-[23px] flex flex-col gap-[14px]">
-            <ToggleButton id="diet" label="다이어트 식단" selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
+            <ToggleButton id="DIET" label="다이어트 식단" selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
             <AnimatePresence>
-              {selectedMenu === "diet" && (
+              {selectedMenu === "DIET" && (
                   <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
@@ -110,9 +110,9 @@ function Category() {
                   </motion.div>
               )}
             </AnimatePresence>
-            <ToggleButton id="vegetarian" label="채식" selectedMenu={selectedMenu}
+            <ToggleButton id="VEGETARIAN" label="채식" selectedMenu={selectedMenu}
                           setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
-            <ToggleButton id="halal" label="무슬림" selectedMenu={selectedMenu}
+            <ToggleButton id="HALAL" label="무슬림" selectedMenu={selectedMenu}
                           setSelectedMenu={setSelectedMenu} setCategory={setCategory}></ToggleButton>
           </div>
           <div className="flex justify-end">
