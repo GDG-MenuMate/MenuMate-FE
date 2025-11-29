@@ -35,7 +35,7 @@ function Loading() {
         console.log("요청 보냄:", body);
 
         const res = await axios.post(
-            `${import.meta.env.VITE_API_URL}/api/recommend`,
+            `${import.meta.env.VITE_API_URL}/recommend`,
             body,
             { headers: { "Content-Type": "application/json" }}
         );
