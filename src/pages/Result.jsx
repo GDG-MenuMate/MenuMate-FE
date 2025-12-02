@@ -102,7 +102,7 @@ function Result() {
                   */}
                   <div className="w-[135px] h-[135px] bg-gray-300">
                     <img
-                        src={getMapUrl(res.latitude, res.longitude)}
+                        src={getMapUrl(res.location.latitude, res.location.longitude)}
                         alt="지도"
                         className="w-full h-full object-cover"
                     />
