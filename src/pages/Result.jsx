@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import {useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import useMenuStore from "../store/useMenuStore.js";
 import html2canvas from "html2canvas";
@@ -12,9 +12,24 @@ function Result() {
 
   const { results, resetAll } = useMenuStore();
 
+  // persist hydration 완료 여부 체크
+  const hasHydrated = useMenuStore.persist.hasHydrated();
+
   useEffect(() => {
-    console.log("[결과 페이지] 현재 결과: ", results);
-  }, []);
+    if (!hasHydrated) {
+      console.log("Hydration 대기 중");
+      return; // hydration이 완료될 때까지 기다림
+    }
+
+    console.log("Hydration 완료");
+    console.log("현재 결과:", results);
+
+    if (!results || results.length === 0) {
+      console.warn("허가되지 않은 접근 감지, 메인으로 리다이렉트");
+      resetAll();
+      navigate("/");
+    }
+  }, [hasHydrated, results, resetAll, navigate]);
 
   const handleClickHome = () => {
     resetAll();
