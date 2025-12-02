@@ -86,7 +86,7 @@ function Result() {
           />
         </button>
         <div className="flex flex-col mt-[155px] gap-6">
-          {results.map((res, i) => (
+          {finalResults.map((res, i) => (
               <div
                   key={i}
                   className={`flex min-h-[150px] items-center justify-end gap-[30px] ${
