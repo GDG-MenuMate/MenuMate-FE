@@ -42,11 +42,26 @@ function Loading() {
 
         console.log("응답 수신:", res.data);
 
+        // 각 식사별 메뉴에 meals 속성 추가
+        const breakfastMenus = (res.data.recommendations.BREAKFAST || []).map(menu => ({
+          ...menu,
+          meals: "아침"
+        }));
+        const lunchMenus = (res.data.recommendations.LUNCH || []).map(menu => ({
+          ...menu,
+          meals: "점심"
+        }));
+        const dinnerMenus = (res.data.recommendations.DINNER || []).map(menu => ({
+          ...menu,
+          meals: "저녁"
+        }));
+
         setResults([
-          ...(res.data.recommendations.BREAKFAST || []),
-          ...(res.data.recommendations.LUNCH || []),
-          ...(res.data.recommendations.DINNER || []),
+          ...breakfastMenus,
+          ...lunchMenus,
+          ...dinnerMenus,
         ]);
+
         setSearchTriggered(false);
       } catch (err) {
         console.error("요청 실패:", err);
