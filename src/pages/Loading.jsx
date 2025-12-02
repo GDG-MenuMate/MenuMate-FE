@@ -69,7 +69,10 @@ function Loading() {
 
       // React 렌더링 사이클을 한 번 거친 후 navigate
       requestAnimationFrame(() => {
-        navigate("/result", { replace: true });
+        navigate("/result", {
+          replace: true,
+          state: { fetchedResults: results } // 데이터 전달
+        });
       });
     }
   }, [results]);

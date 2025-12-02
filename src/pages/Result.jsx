@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import useMenuStore from "../store/useMenuStore.js";
 import html2canvas from "html2canvas";
 import Background from "../assets/Background.png";
@@ -9,27 +9,21 @@ import Export from "../assets/Export.svg";
 
 function Result() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { results, resetAll } = useMenuStore();
 
-  // persist hydration 완료 여부 체크
-  const hasHydrated = useMenuStore.persist.hasHydrated();
+  const finalResults = location.state?.fetchedResults || results;
 
   useEffect(() => {
-    if (!hasHydrated) {
-      console.log("Hydration 대기 중");
-      return; // hydration이 완료될 때까지 기다림
-    }
-
-    console.log("Hydration 완료");
-    console.log("현재 결과:", results);
-
-    if (!results || results.length === 0) {
-      console.warn("허가되지 않은 접근 감지, 메인으로 리다이렉트");
+    if (!finalResults || finalResults.length === 0) {
+      console.warn("비정상 접근 감지, 메인으로 리다이렉트");
+      navigate("/", { replace: true });
       resetAll();
-      navigate("/");
     }
-  }, [hasHydrated, results, resetAll, navigate]);
+
+    console.log("[결과 페이지] 현재 결과: ", finalResults);
+  }, [finalResults, navigate, resetAll]);
 
   const handleClickHome = () => {
     resetAll();
