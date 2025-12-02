@@ -18,7 +18,6 @@ const useMenuStore = create(
           step: {start: false, first: false}, // 단계 수행 여부 (category, prompt 페이지 url로 강제 접근 방지)
           searchTriggered: false, // 검색 요청 여부
           results: [],    // 검색 결과
-          isLoaded: false, // 로딩 완료 여부
           error: null,
 
           setCategory: (category) => set({category}),
@@ -39,7 +38,7 @@ const useMenuStore = create(
                 step: {...state.step, ...step},
               })),
           setSearchTriggered: (value) => set({searchTriggered: value}),
-          setResults: (results) => set({results, isLoaded: true}),
+          setResults: (results) => set({results}),
           setError: (err) => set({error: err}),
 
           resetFilters: () =>
@@ -60,7 +59,6 @@ const useMenuStore = create(
                 step: {start: false, first: false},
                 searchTriggered: false,
                 results: [],
-                isLoaded: false,
               }),
         }),
         {

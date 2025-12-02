@@ -64,7 +64,11 @@ function Loading() {
   useEffect(() => {
     if (results && results.length > 0) {
       setStep({start: false, first: false});
-      navigate("/result");
+
+      // React 렌더링 사이클을 한 번 거친 후 navigate
+      requestAnimationFrame(() => {
+        navigate("/result", { replace: true });
+      });
     }
   }, [results]);
 

@@ -10,7 +10,7 @@ import Export from "../assets/Export.svg";
 function Result() {
   const navigate = useNavigate();
 
-  const { results, isLoaded, resetAll } = useMenuStore();
+  const { results, resetAll } = useMenuStore();
 
   // 테스트용
   /*
@@ -52,13 +52,12 @@ function Result() {
    */
 
   useEffect(() => {
-    if (!isLoaded) return; // 아직 데이터 로딩 안됨 -> 대기
-
+    console.log("현재 결과: ", results)
     if (results.length === 0) {
       console.warn("허가되지 않은 접근 감지, 메인으로 리다이렉트");
       navigate("/");
     }
-  }, [isLoaded, results]);
+  }, [results]);
 
   const handleClickHome = () => {
     resetAll();
