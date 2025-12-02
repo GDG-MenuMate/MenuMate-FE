@@ -42,7 +42,11 @@ function Loading() {
 
         console.log("응답 수신:", res.data);
 
-        setResults(res.data.menus);
+        setResults([
+          ...(res.data.recommendations.BREAKFAST || []),
+          ...(res.data.recommendations.LUNCH || []),
+          ...(res.data.recommendations.DINNER || []),
+        ]);
         setSearchTriggered(false);
       } catch (err) {
         console.error("요청 실패:", err);
